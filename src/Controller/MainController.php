@@ -11,7 +11,7 @@ use App\Repository\UsuarioRepository;
 
 /**
  * Controlador que redirige al index de la pagina
- * @author Sergio
+ * @author Ivan
  */
 class MainController extends AbstractController
 {

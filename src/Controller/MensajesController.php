@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Este es el controlador de los mensajes generados en la funcionalidad de Feed.
  * @Route("/mensajes")
- * @author Sergio
+ * @author Ivan
  */
 class MensajesController extends AbstractController
 {

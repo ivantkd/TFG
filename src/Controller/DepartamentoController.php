@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * El controlador para gestionar los departamentos registrados en la bbdd
- * @author Ivan&Sergio
+ * @author Ivan
  * @Route("/departamentolocal")
  */
 class DepartamentoController extends AbstractController

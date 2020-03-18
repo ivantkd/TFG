@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controlador que gestiona el calendario
  * @Route("/booking")
- * @author Sergio
+ * @author Ivan
  */
 class BookingController extends AbstractController
 {

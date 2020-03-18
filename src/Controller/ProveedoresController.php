@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Esta clase es el controlador de los proveedores.
  * Tiene todos los metodos necesarios para poder trabajar con los proveedores guardados en la bbdd.
  * @Route("/proveedores")
- * @author Ivan&Sergio
+ * @author Ivan
  */
 class ProveedoresController extends AbstractController
 {

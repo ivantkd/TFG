@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 /**
  * Esta clase se encarga del login del usuario, para setear la sesion.
- * @author Ivan&Sergio
+ * @author Ivan
  */
 class SecurityController extends AbstractController
 {

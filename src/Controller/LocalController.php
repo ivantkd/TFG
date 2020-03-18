@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/localdepartamento")
  * Controlador para los locales ingresados en la bbdd
- * @author Ivan&Sergio
+ * @author Ivan
  */
 class LocalController extends AbstractController
 {

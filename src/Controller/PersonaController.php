@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  * Esta clase es el controlador para las personas.
  * La entidad Personas gestiona la información personal de un usuario en la bbdd.
  * @Route("/persona")
- * @author Ivan&Sergio
+ * @author Ivan
  */
 class PersonaController extends AbstractController
 {

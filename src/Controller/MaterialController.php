@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Este es el controlador para el material en la bbdd.
  * @Route("/material")
- * @author Sergi
+ * @author Ivan
  */
 class MaterialController extends AbstractController
 {

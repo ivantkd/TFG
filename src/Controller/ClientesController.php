@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controlador que gestiona los clientes almacenados en la bbdd
  * @Route("/clientes")
- * @author Ivan&Sergio
+ * @author Ivan
  */
 class ClientesController extends AbstractController
 {
