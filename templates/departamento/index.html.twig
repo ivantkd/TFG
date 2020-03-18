@@ -1,0 +1,34 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Departamento index{% endblock %}
+
+{% block content %}
+    <h1>Departamento index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for departamento in departamentos %}
+            <tr>
+                <td>{{ departamento.Nombre }}</td>
+                <td>
+                    
+                     <a style="float:left; margin-left:2%;" href="{{ path('departamento_edit', {'Nombre': departamento.Nombre}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+                    <a href="{{ path('departamento_edit', {'Nombre': departamento.Nombre}) }}">edit</a>
+                     <a style="float:left; margin-left:2%;" href="{{ path('departamento_show', {'Nombre': departamento.Nombre}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Ningún departamento creado</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('departamento_new') }}">Crear un nuevo departamento</a>
+{% endblock %}

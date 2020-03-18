@@ -1,0 +1,56 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+    <h1>Información de la persona <b> {{ persona.Nombre }} </b></h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ persona.Nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellidos</th>
+                <td>{{ persona.Apellidos }}</td>
+            </tr>
+            <tr>
+                <th>Cargo</th>
+                <td>{{ persona.Cargo }}</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>{{ persona.Correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ persona.Telefono }}</td>
+            </tr>
+            <tr>
+                <th>Numero_Empleado</th>
+                <td>{{ persona.Numero_Empleado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn"><a href="{{ path('persona_index') }}">Volver a la lista de personas</a></button>
+
+    <br>
+    <br>
+
+    <button class="btn"><a href="{{ path('persona_edit', {'Numero_Empleado': persona.Numero_Empleado}) }}">Editar la informacion de la persona</a></button>
+
+    <br>
+    <br>
+
+    {{ include('persona/_delete_form.html.twig') }}
+
+    <br>
+
+</main>
+</body>
+{% endblock %}

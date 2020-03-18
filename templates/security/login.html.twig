@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="css/loginStyle.css">
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>{% block title %}Log in!{% endblock %}</title>
+       
+    </head>
+    
+   <body>
+   
+        
+    {% block body %}
+        
+        
+                {% if is_granted('ROLE_ADMIN') %}
+
+                        <a href="{{path('main')}}"> asdas </a>
+                
+                
+                {% else %}
+
+                    <form class = "form-signin" method="post">
+                
+                            <img src="img/logo.png" width="300" height="250">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <h1 class="h4 mb-3 font-weight-normal">Inicie Sesión en la intranet</h1>
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Email</label>
+                                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Email" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <div>
+                            <input type="hidden" name="_csrf_token"
+                                value="{{ csrf_token('authenticate') }}">
+
+                        
+                            <br>
+
+                            <button class="btn btn-xs btn-primary center" data-toggle="modal" data-target="#exampleModal" type="submit">
+                                Inicia Sesión
+                            </button>
+                     </form>
+
+                    
+
+                            <!-- Modal -->
+                        <div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-body">
+                                       <b> Bienvenid@ a la intranet</b>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                        </div>
+                {% endif %}
+
+                
+        
+        
+    
+    {% endblock %}
+
+
+    {% block javascripts %}
+       
+
+    {% endblock %}
+        
+    
+
+</body>
+
+</html>
+

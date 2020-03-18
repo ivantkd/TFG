@@ -1,0 +1,165 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Lista materiales index{% endblock %}
+
+{% block content %}
+    
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+
+<br>
+<br>
+
+
+ <h1>Lista de Material de Empresa </h1>
+    <br>
+    <br>
+
+   <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Clasificar por local
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for loc in local %}
+        
+        <a class="dropdown-item" href="{{ path ('material_bylocal', {'id': loc.id})}}"> {{loc.Poblacion}} - {{loc.Direccion}} </a>
+         
+    {% endfor %}
+  </div>
+  <br>
+  <br>
+
+   
+</div>
+
+    <div class="row">
+                  
+
+         <div class="table-responsive col-md-5">
+            <h3>Material disponible</h3>
+            <br>
+             
+            <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Tipo</th>
+                            <th>Actions</th>
+                
+                        </tr>
+                    </thead>
+        <tbody>
+
+        {% for material in materials %}
+        
+            <tr>
+                <td>{{ material.Nombre }}</td>
+                <td>{{ material.Descripcion }}</td>
+                <td>{{ material.Tipo }}</td>
+                <td>
+                    
+                   
+                    
+                    <a style="float:left; margin-left:2%;" href="{{ path('material_show', {'id': material.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+            
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                    <form method="post" style="float:left; margin-left:2%;" action="{{ path('material_delete', {'id': material.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el material?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ material.id) }}">
+                    </form>
+
+                    <a style="float:left; margin-left:2%;" href="{{ path('material_edit', {'id': material.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="7">No hay ningún material disponible</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+        </table>
+            <a style="float:right;" href="{{ path('material_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+
+    </div>
+
+        
+    <div class="table-responsive col-md-5">
+
+        <h3>Materiales Prestados</h3>
+        <br>
+         <table class="table table-bordered table-striped table-sm">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Tipos</th>
+                        <th>Usuario</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+         <tbody>
+   
+                {% for notmaterial in materialesNoDisponibles %}
+
+                    <tr>
+                          <td> {{notmaterial.Nombre}} </td>
+                          <td> {{notmaterial.Descripcion}} </td>
+                          <td> {{notmaterial.Tipo}} </td>
+                          <td> {{notmaterial.Usuario}} </td>
+                            <td>
+                    
+                   
+                    
+                            <a style="float:left; margin-left:2%;" href="{{ path('material_show', {'id': notmaterial.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                            <form method="post" style="float:left; margin-left:2%;" action="{{ path('material_delete', {'id': notmaterial.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el material?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ notmaterial.id) }}">
+                            </form>
+
+                            <a style="float:left; margin-left:2%;" href="{{ path('material_edit', {'id': notmaterial.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+                         {% else %}
+
+                         <tr>
+                             <td colspan="7">No hay ningún material prestado</td>
+                        </tr>
+                {% endfor %}
+                          
+                          
+                    </tr>               
+                    </tbody>
+                    </table>
+
+                     <a style="float:right;" href="{{ path('material_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+            </div>
+        </div>
+    </table>
+
+</main>
+</body>
+{% endblock %}

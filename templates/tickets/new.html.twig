@@ -1,0 +1,19 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Tickets new{% endblock %}
+
+{% block content %}
+<body>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <h1>Generar nueva incidencia</h1>
+
+    <br>
+
+    {{ include('tickets/_form.html.twig') }}
+
+    <br>
+
+    <button class="btn"><a href="{{ path('tickets_index') }}">Volver a la lista de tickets</a></button>
+    </main>
+</body>
+{% endblock %}

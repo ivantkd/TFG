@@ -1,0 +1,41 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Local{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Información básica del local</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ local.Direccion }}</td>
+            </tr>
+            <tr>
+                <th>Poblacion</th>
+                <td>{{ local.Poblacion }}</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>{{ local.Correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ local.Telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn"><a href="{{ path('local_index') }}">Volver a la lista de locales</a></button>
+
+    <br>
+    <br>
+
+    <button class="btn"><a href="{{ path('local_edit', {'id': local.id}) }}">Editar la información del local</a></button>
+
+
+
+</main>
+</body>
+{% endblock %}

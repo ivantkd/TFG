@@ -1,0 +1,48 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+
+    <body>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+    <h1>Información del proveedor <b>{{proveedore.Nombre}}</b></h1>
+
+    
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Correo</th>
+                <td>{{ proveedore.Correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ proveedore.Telefono }}</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ proveedore.Responsable }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ proveedore.Direccion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('proveedores_index') }}">Volver a la lista de proveedores</a>
+     {% if is_granted('ROLE_ADMIN') %}
+     
+    <a href="{{ path('proveedores_edit', {'id': proveedore.id}) }}">Editar proveedor</a>
+
+
+    {{ include('proveedores/_delete_form.html.twig') }}
+
+    {% endif %} 
+
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    </body>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Edit Local{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Editar la información del local</h1>
+
+    {{ include('local/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <br>
+
+    <button class="btn"><a href="{{ path('local_index') }}">Volver a la lista de locales</a></button>
+
+    <br>
+
+
+</main>
+</body>
+{% endblock %}

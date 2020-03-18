@@ -1,0 +1,55 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Tickets index{% endblock %}
+
+{% block content %}
+<body>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <br>
+        <h1>Tickets</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mail</th>
+                    <th>Departamento</th>
+                    <th>TipoIncidente</th>
+                    <th>Dispositivo</th>
+                    <th>Resuelto</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if is_granted('ROLE_ADMIN') %}
+            <button class="btn"><a href="{{ path('ticketsbyresolved') }}">Mostrar Tickets Resueltos</a></button>
+            <button class="btn"><a href="{{ path('ticketsbynotresolved') }}">Mostrar Tickets No Resueltos</a></button>
+            <br/>
+            <br/>
+            {% endif %}
+            {#<button class="btn"><a href="{{ path('tickets_resolve', {'id': ticket.id}) }}">Mostrar Tickets No Resueltos</a></button>#}
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.usermail }}</td>
+                    <td>{{ ticket.Departamento }}</td>
+                    <td>{{ ticket.TipoIncidente }}</td>
+                    <td>{{ ticket.Dispositivo }}</td>
+                    <td>{{ ticket.Solved}}</td>
+                    <td>
+                        <button class="btn"><a href="{{ path('tickets_show', {'id': ticket.id}) }}">Mostrar</a></button>
+                        {% if ticket.solved == "no" and is_granted('ROLE_ADMIN') %}
+                        <button class="btn"><a href="{{ path('tickets_resolve', {'id': ticket.id}) }}">Resolver</a></button>
+                        {% endif %}
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">No hay ninguna incidencia</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+    {#<a href="{{ path('tickets_new') }}">Create new</a>#}
+{% endblock %}

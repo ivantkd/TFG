@@ -1,0 +1,15 @@
+{% extends 'nav.html.twig' %}
+{% block title %}New Proveedores{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Registrar a un nuevo proveedor de la empresa</h1>
+
+    {{ include('proveedores/_form.html.twig') }}
+
+    <a href="{{ path('proveedores_index') }}">Volver a la lista de clientes y proveedores</a>
+
+</main>
+</body>
+{% endblock %}

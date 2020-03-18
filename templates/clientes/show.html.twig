@@ -1,0 +1,44 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Información del cliente <b>{{cliente.Nombre}}</b></h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Correo</th>
+                <td>{{ cliente.Correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ cliente.Telefono }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ cliente.Direccion }}</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ cliente.Responsable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn"><a href="{{ path('proveedores_index') }}">Volver a la lista de clientes y proveedores</a></button>
+
+    <br>
+    
+
+
+    <button class="btn"><a href="{{ path('clientes_edit', {'id': cliente.id}) }}">Editar la información del cliente</a></button>
+
+
+<br>
+    {{ include('clientes/_delete_form.html.twig') }}
+
+</main>
+</body>
+{% endblock %}

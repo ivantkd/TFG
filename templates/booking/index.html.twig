@@ -1,0 +1,47 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Booking index{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Evento de la empresa</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Empieza:</th>
+                <th>Termina:</th>
+                <th>Título del evento:</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                
+                
+                {{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}
+                
+                </td>
+                <td>{{ booking.title }}</td>
+                <td>
+                     <a style="float:left; margin-left:2%;" href="{{ path('booking_show', {'id': booking.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    <a style="float:left; margin-left:2%;" href="{{ path('booking_edit', {'id': booking.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No existe ningun evento creado</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <button class="btn"><a href="{{ path('booking_new') }}">Crear un nuevo evento</a></button>
+</main>
+</body>
+{% endblock %}

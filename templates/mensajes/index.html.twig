@@ -1,0 +1,77 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Mensajes index{% endblock %}
+
+{% block content %}
+
+<body>
+<main role="main" class="col-md-14 ml-sm-auto col-lg-10 pt-3 px-4 ">
+   
+    <h1 style="margin-left:25%">Feed de mensajes</h1>   
+
+     
+   <a href="{{ path('mensajes_new') }}"><img style="margin-left:63%; margin-top:-5%;" width="30px" height="30px" src="../../../../img/mas.png"></a>
+      
+       
+        {% for mensaje in mensajes %}
+
+            <div class="row mt-4">
+
+                <div class="col-sm-2 ">
+    
+                </div>
+                
+                <div class="col-sm-6" style="border: 1px solid black;">
+                <br>
+                <p style = "line-height: 0.25em; font-size: 10pt">  De: <i>{{ mensaje.mailUsuario }} </i></p>
+                <p style = "line-height: 0.25em; font-size: 10pt"> Fecha: {{ mensaje.fecha ? mensaje.fecha|date('Y-m-d H:i:s') : '' }} </p>
+                <p style = "line-height: 0.25em; font-size: 12pt"><b>{{ mensaje.asunto }} </b></p>
+                
+                <hr> 
+                <p style = "line-height: 1.25em; font-size: 10pt">{{ mensaje.cuerpo }}</p>
+                <br>
+                
+                
+                <br>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <form method="post" style="float:right;" action="{{ path('mensajes_delete', {'id': mensaje.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mensaje.id) }}">
+                    
+                    </form>
+                {% endif %}  
+            
+                <br>
+                <br>
+              
+
+
+
+                
+                </div>
+
+            
+            </div>
+
+               
+                    
+                
+            
+        {% else %}
+               
+               
+                        <br>
+                        <br>
+                 
+                        <p style = "line-height: 1em; font-size: 15pt; margin-left:25%; ">  No hay ningún mensaje  </h5>  
+                 
+               
+                
+    
+        {% endfor %}
+       
+  
+
+</main>
+</body>
+{% endblock %}

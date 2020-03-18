@@ -1,0 +1,21 @@
+{{ include('nav.html.twig') }}
+
+{% block title %}New Booking{% endblock %}
+
+{% block content %}
+<body>
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <h1>Crear un nuevo evento </h1>
+
+    
+    {{ include('booking/_form.html.twig') }}
+    
+    <br>
+    <br>
+    <button class="btn"><a href="{{ path('booking_calendar') }}">Volver al calendario</a></button>
+    
+    <br>
+
+    </main>
+</body>
+{% endblock %}

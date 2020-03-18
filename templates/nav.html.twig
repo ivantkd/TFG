@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../css/styleMain.css" rel="stylesheet">
+        <link href="../../../../css/dashboard.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>{% block title %}Pagina principal{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+   
+    
+    
+        
+        {% block body %} 
+
+        
+    
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Has iniciado sesión con:  {{app.user.username}}</a>
+            {#<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">#}
+
+            
+           
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                <a style="float:right" class="nav-link" id="avatar" href="{{ path('perfil', {'mail': app.user.username}) }}"><img  src="../../../../img/avatar.png" width="35" height="35"></a> 
+              </li> 
+            </ul>
+            <ul class="navbar-nav px-3">
+
+              
+             
+              <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{{path('app_logout')}}">Cerrar Sesión</a> 
+            
+              </li>
+              
+            </ul>
+            
+      
+        </nav>
+        
+
+        <div class="container-fluid">
+              <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                  <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span>Funciones disponibles </span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('booking_calendar') }}">
+                      <span data-feather="users"></span>
+                      Calendario de eventos
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('ticketsbyUser') }}">
+                      <span data-feather="users"></span>
+                      Listar mis Incidencias
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{path('tickets_new')}}">
+                      <span data-feather="file"></span>
+                      Generar Incidencia
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{path('material_index')}}">
+                      <span data-feather="bar-chart-2"></span>
+                      Mis materiales y materiales disponibles
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                   
+                    <a class="nav-link" href="{{path('proveedores_index')}}">
+                      <span data-feather="layers"></span>
+                      Clientes y proveedores
+                    </a>
+                  </li>
+                   <li class="nav-item">
+                   
+                    <a class="nav-link" href="{{path('local_index')}}">
+                      <span data-feather="layers"></span>
+                      Locales y departamentos
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                   
+                    <a class="nav-link" href="{{path('mensajes_index')}}">
+                      <span data-feather="layers"></span>
+                      Tablón de mensajes
+                    </a>
+                  </li>
+                </ul>
+                {% if is_granted('ROLE_ADMIN') %}
+
+
+                   <ul class="nav flex-column">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span>Funciones disponibles como Admin</span>
+                      <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                      </a>
+                    </h6>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{path('persona_index')}}">
+                      <span data-feather="file"></span>
+                      Personal de empresa
+                    </a>
+                  </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="{{ path('usuario_index') }}">
+                      <span data-feather="file"></span>
+                      Usuarios de la intranet
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('listmaterial_index') }}">
+                      <span data-feather="file"></span>
+                      Material de la empresa
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('booking_index') }}">
+                      <span data-feather="file"></span>
+                      Eventos de la empresa
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{path('tickets_index')}}">
+                      <span data-feather="shopping-cart"></span>
+                      Incidencias general
+                    </a>
+                  </li>
+ 
+                </ul>   
+                  
+                  
+                  {% endif %}
+                 
+
+                
+              </div>
+           </nav>
+
+       </div>
+
+      
+         
+      
+      {% block content %} 
+      
+
+      <!-- Aqui van los twig de las vistas -->
+     
+      {% endblock %}  
+      
+
+      
+
+      {% endblock %}
+
+      {% block javascripts %} {% endblock %}
+        
+    
+<!--</html>!-->

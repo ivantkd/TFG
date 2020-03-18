@@ -1,0 +1,136 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Locales index{% endblock %}
+
+{% block content %}
+    
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+<br>
+<br>
+
+
+    <div class="row">
+                  
+
+         <div class="table-responsive col-md-5">
+            <h3>Locales</h3>
+            
+             
+            <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            
+                            <th>Direccion</th>
+                            <th>Poblacion</th>
+                            <th>Telefono</th>
+                            <th></th>
+                
+                        </tr>
+                    </thead>
+        <tbody>
+
+        {% for local in locals  %}
+        
+            <tr>
+                <td>{{ local.Direccion }}</td>
+                <td>{{ local.Poblacion }}</td>
+                <td>{{ local.Telefono }}</td>
+                <td>
+                    
+                   
+                    
+                    <a style="float:left; margin-left:2%;" href="{{ path('local_show', {'id': local.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+            
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                    
+
+                    <a style="float:left; margin-left:2%;" href="{{ path('local_edit', {'id': local.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="7">No existe ningun local</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+        </table>
+
+         {% if is_granted('ROLE_ADMIN') %}
+            <a style="float:right;" href="{{ path('local_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+         {% endif %} 
+    </div>
+
+        
+    <div class="table-responsive col-md-5">
+
+        <h3>Departamento</h3>
+         <table class="table table-bordered table-striped table-sm">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                       
+                        <th></th>
+                         
+                         
+                    </tr>
+                </thead>
+         <tbody>
+
+                        
+                {% for departamento in departamentos %}
+
+                    <tr>
+                          <td> {{departamento.Nombre}} </td>
+                        
+                          <td>
+                    
+                   
+                    
+                            <a style="float:left; margin-left:2%;" href="{{ path('departamento_show', {'Nombre': departamento.Nombre}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                           
+
+                            <a style="float:left; margin-left:2%;" href="{{ path('departamento_edit', {'Nombre': departamento.Nombre}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                        </td>
+
+                         {% else %}
+
+                         <tr>
+                             <td colspan="7">No existe ningún departamento</td>
+                        </tr>
+                {% endfor %}
+                          
+                          
+                    </tr>               
+                    </tbody>
+                    </table>
+                    {% if is_granted('ROLE_ADMIN') %}
+                     <a style="float:right;" href="{{ path('departamento_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+                     {% endif %}
+            </div>
+        </div>
+    </table>
+
+</main>
+{% endblock %}

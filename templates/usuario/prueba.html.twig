@@ -1,0 +1,103 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Pagina local{% endblock %}
+
+{% block content %}
+<body>
+
+   
+    {% set resueltos = 0 %} 
+    {% set noresueltos = 0 %} 
+    {% for tick in tickets %}
+
+            {% if  tick.solved == "yes"  %}
+
+                     {% set resueltos = resueltos + 1 %} 
+
+            {% else %}
+
+                    {% set noresueltos = noresueltos + 1 %} 
+  
+            {% endif %}
+
+           
+    {% endfor %}
+
+
+
+<hr>
+<br>
+<br>
+
+<div class="container bootstrap snippet">
+   
+    <div class="row">
+
+
+  		<div class="col-6 col-md-4"><!--left col-->
+              
+
+        <div class="text-center">
+            <img src="../../../../../imagenesperfil/{{usuario.imagen}}" width="200" height="350" class="avatar img-circle img-thumbnail" alt="avatar"> 
+        
+        </div></hr><br>
+
+          <ul class="list-group">
+
+            <li class="list-group-item text-center"><span class="pull-left"><strong>Total tickets resueltos</strong></span> {{resueltos}}</li>
+            <li class="list-group-item text-center"><span class="pull-left"><strong>Total tickets abiertos</strong></span> {{noresueltos}}</li>
+            
+          </ul> 
+               
+          <div class="panel panel-default">
+           
+            <div class="panel-body">
+            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            </div>
+          </div>
+          </div><!--/col-3-->
+        <div class="col-4 col-md-2">
+        </div>
+        
+    	<div class="col-6 col-md-4">
+          
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+
+                <ul class="list-group">
+
+                    <li class="list-group-item text-center"><span class="pull-left"><strong>Nombre</strong></span> {{usuario.nombre}}</li>
+
+                
+                     <br>
+                     <li class="list-group-item text-center"><span class="pull-left"><strong>Apellido</strong></span> {{usuario.Apellidos}}</li>
+                     <br>
+                        <li class="list-group-item text-center"><span class="pull-left"><strong>Correo</strong></span> {{usuario.mail}}</li>
+                    <br>
+                       
+                       <button class="btn"><a href="{{ path('usuario_edit', {'mail': usuario.mail}) }}">Editar información del usuario</a></button>
+
+                </ul>
+           
+            
+             </div><!--/tab-pane-->
+            
+               
+              </div><!--/tab-pane-->
+        </div>
+                                                      
+    </div>
+    
+
+
+ 
+
+
+
+
+</body>
+
+{% endblock %}

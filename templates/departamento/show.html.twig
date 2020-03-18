@@ -1,0 +1,33 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Departamento{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Departamento</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ departamento.Nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+     <button class="btn"><a href="{{ path('local_index') }}">Ir a la lista de departamentos</a></button>
+
+    <br>
+    <br>
+
+    <button class="btn"><a href="{{ path('departamento_edit', {'Nombre': departamento.Nombre}) }}">Editar el departamento</a></button>
+
+    <br>
+    <br>
+   
+
+</body>
+</main>
+{% endblock %}

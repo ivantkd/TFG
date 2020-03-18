@@ -1,0 +1,40 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Material{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Información del material <b> {{ material.Nombre }} </b></h1>
+
+    <table class="table">
+        <tbody>
+                <th>Descripcion</th>
+                <td>{{ material.Descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ material.Precio }}</td>
+            </tr>
+            <tr>
+                <th>Usuario</th>
+                <td>{{ material.Usuario }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ material.Tipo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('material_index') }}">Volver a la lista del registro de materiales</a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('material_edit', {'id': material.id}) }}">Editar el material</a>
+
+    {{ include('material/_delete_form.html.twig') }}
+
+    {% endif %}
+
+</main>
+</body>
+{% endblock %}

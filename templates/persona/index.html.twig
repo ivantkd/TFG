@@ -1,0 +1,49 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Persona index{% endblock %}
+
+{% block content %}
+
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+    <h1>Directorio de personas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero_Empleado</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Cargo</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for persona in personas %}
+            <tr>
+                <td>{{ persona.Numero_Empleado }}</td>
+                <td>{{ persona.Nombre }}</td>
+                <td>{{ persona.Apellidos }}</td>
+                <td>{{ persona.Cargo }}</td>
+                <td>{{ persona.Correo }}</td>
+                <td>{{ persona.Telefono }}</td>
+                <td>
+                    <a style="float:left; margin-left:2%;" href="{{ path('persona_show', {'Numero_Empleado': persona.Numero_Empleado}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    <a style="float:left; margin-left:2%;" href="{{ path('persona_edit', {'Numero_Empleado': persona.Numero_Empleado}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No existe ninguna persona en la base de datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('persona_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+
+</main>
+</body>
+{% endblock %}

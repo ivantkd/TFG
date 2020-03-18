@@ -1,0 +1,44 @@
+{% extends 'nav.html.twig' %}
+{% block title %}Mensajes{% endblock %}
+
+{% block content %}
+
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+    <h1>Información del mensaje</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mensaje.id }}</td>
+            </tr>
+            <tr>
+                <th>Cuerpo</th>
+                <td>{{ mensaje.cuerpo }}</td>
+            </tr>
+            <tr>
+                <th>Asunto</th>
+                <td>{{ mensaje.asunto }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ mensaje.fecha ? mensaje.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('mensajes_index') }}">Volver a la feed de mensajes</a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <br>
+
+    {{ include('mensajes/_delete_form.html.twig') }}
+
+    {% endif %}
+
+</main>
+</body>
+{% endblock %}

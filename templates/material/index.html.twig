@@ -1,0 +1,172 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Material index{% endblock %}
+
+{% block content %}
+
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+    <br>
+    
+    <h1>Mi material </h1>
+    <br>
+
+   <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Clasificar por local
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for loc in local %}
+        
+        <a class="dropdown-item" href="{{ path ('material_bylocal', {'id': loc.id})}}"> {{loc.Poblacion}} - {{loc.Direccion}} </a>
+         
+    {% endfor %}
+  </div>
+    <br>
+    <br>
+   
+</div>
+    <div class="row">
+                  
+
+         <div class="table-responsive col-md-5">
+            <h3>Material disponible</h3>
+            <br>
+            
+             
+            <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Tipo</th>
+                            <th>Actions</th>
+                            <th>Agregar Material</th>
+                
+                        </tr>
+                    </thead>
+        <tbody>
+
+        {% for material in materials %}
+        
+            <tr>
+                <td>{{ material.Nombre }}</td>
+                <td>{{ material.Descripcion }}</td>
+                <td>{{ material.Tipo }}</td>
+                <td>
+                    
+                   
+                    
+                    <a style="float:left; margin-left:2%;" href="{{ path('material_show', {'id': material.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+            
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                    <form method="post" style="float:left; margin-left:2%;" action="{{ path('material_delete', {'id': material.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el material?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ material.id) }}">
+                    </form>
+
+                    <a style="float:left; margin-left:2%;" href="{{ path('material_edit', {'id': material.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+                <td>
+                    <a href="{{ path('asignar_material', {'id': material.id}) }}" onsubmit="return confirm('Estás seguro que desea agregar el material?');">Agregar</a>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="7">No hay ningún material disponible</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+        </table>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a style="float:right;" href="{{ path('material_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+        {% endif %}
+    </div>
+
+    <div class="table-responsive col-md-5">
+
+        <h3>Mis materiales</h3>
+        <br>
+         <table class="table table-bordered table-striped table-sm">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Tipos</th>
+                        <th>Actions</th>
+                        <th>Devolver</th>
+                        
+                         
+                         
+                    </tr>
+                </thead>
+         <tbody>
+
+                        
+                {% for materialasigned in materialsAsigned %}
+
+                    <tr>
+                          <td> {{materialasigned.Nombre}} </td>
+                          <td> {{materialasigned.Descripcion}} </td>
+                          <td> {{materialasigned.Tipo}} </td>
+
+                            <td>
+                    
+                   
+                    
+                            <a style="float:left; margin-left:2%;" href="{{ path('material_show', {'id': materialasigned.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                            <form method="post" style="float:left; margin-left:2%;" action="{{ path('material_delete', {'id': materialasigned.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el material?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ materialasigned.id) }}">
+                            </form>
+
+                            <a style="float:left; margin-left:2%;" href="{{ path('material_edit', {'id': materialasigned.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+                <td>
+                                        <a href="{{ path('devolver_material', {'id': materialasigned.id}) }}" onsubmit="return confirm('Estás seguro que desea agregar el material?');">Devolver</a>
+
+                </td>
+                         {% else %}
+
+                         <tr>
+                             <td colspan="7">No tienes ningun material asignado</td>
+                        </tr>
+                {% endfor %}
+                          
+                          
+                    </tr>               
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </table>
+
+
+</main>
+
+</body>
+{% endblock %}

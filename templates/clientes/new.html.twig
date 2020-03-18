@@ -1,0 +1,22 @@
+{% extends 'nav.html.twig' %}
+{% block title %}New Clientes{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+    <h1>Registrar a un nuevo cliente de la empresa</h1>
+
+
+    {{ include('clientes/_form.html.twig') }}
+
+    <br>
+    <br>
+
+    <button class="btn"><a href="{{ path('proveedores_index') }}">Volver a la lista de clientes y proovedores</a></button>
+
+    <br>
+
+</main>
+</body>
+{% endblock %}

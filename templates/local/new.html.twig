@@ -1,0 +1,16 @@
+{% extends 'nav.html.twig' %}
+{% block title %}New Local{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Registrar una nueva oficina en la empresa</h1>
+
+    {{ include('local/_form.html.twig') }}
+
+    <a href="{{ path('local_index') }}">Volver a la lista de locales</a>
+    
+</main>
+</body>
+
+{% endblock %}

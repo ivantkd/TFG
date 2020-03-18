@@ -1,0 +1,52 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+
+<body>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>Evento {{booking.title}}</h1>
+
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Empieza:</th>
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Termina:</th>
+                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ booking.title }}</td>
+            </tr>
+            <tr>
+                <th>Usuario que ha creado evento</th>
+                <td>{{ booking.mail_usuario }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <button class="btn"><a href="{{ path('booking_index') }}">Volver al calendario</a></button>
+
+    <br>
+    <br>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <button class="btn"><a href="{{ path('booking_edit', {'id': booking.id}) }}">Editar</a></button>
+    
+    <br>
+    <br>
+
+    {{ include('booking/_delete_form.html.twig') }}
+
+    {% endif %}
+</main>
+</body>
+{% endblock %}

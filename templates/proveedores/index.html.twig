@@ -1,0 +1,140 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Proveedores index{% endblock %}
+
+{% block content %}
+    
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+<br>
+<br>
+
+
+    <div class="row">
+                  
+
+         <div class="table-responsive col-md-5">
+            <h3>Proveedores</h3>
+             <a href="{{ path('proveedores_new') }}"></a>
+             
+            <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            
+                            <th>Nombre</th>
+                            <th>Producto</th>
+                            <th></th>
+                
+                        </tr>
+                    </thead>
+        <tbody>
+
+        {% for proveedore in proveedores %}
+        
+            <tr>
+                <td>{{ proveedore.Nombre }}</td>
+                <td>{{ proveedore.producto }}</td>
+                <td>
+                    
+                   
+                    
+                    <a style="float:left; margin-left:2%;" href="{{ path('proveedores_show', {'id': proveedore.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+            
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                    <form method="post" style="float:left; margin-left:2%;" action="{{ path('proveedores_delete', {'id': proveedore.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el proveedor?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ proveedore.id) }}">
+                    </form>
+
+                    <a style="float:left; margin-left:2%;" href="{{ path('proveedores_edit', {'id': proveedore.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="7">No hay ningún proveedor activo</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+        </table>
+
+         {% if is_granted('ROLE_ADMIN') %}
+            <a style="float:right;" href="{{ path('proveedores_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+         {% endif %} 
+    </div>
+
+        
+    <div class="table-responsive col-md-5">
+
+        <h3>Clientes</h3>
+         <table class="table table-bordered table-striped table-sm">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Servicio</th>
+                        <th></th>
+                         
+                         
+                    </tr>
+                </thead>
+         <tbody>
+
+                        
+                {% for us in clientes %}
+
+                    <tr>
+                          <td> {{us.Nombre}} </td>
+                          <td> {{us.Correo}} </td>
+                            <td>
+                    
+                   
+                    
+                            <a style="float:left; margin-left:2%;" href="{{ path('clientes_show', {'id': us.id}) }}"><img src="../../../img/lupa.png"  width="30px" height="30px"></a>
+                    
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                            <form method="post" style="float:left; margin-left:2%;" action="{{ path('clientes_delete', {'id': us.id}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el proveedor?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ us.id) }}">
+                            </form>
+
+                            <a style="float:left; margin-left:2%;" href="{{ path('clientes_edit', {'id': us.id}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      
+
+                
+                {% endif %}  
+                </td>
+                         {% else %}
+
+                         <tr>
+                             <td colspan="7">No hay ningún cliente activo</td>
+                        </tr>
+                {% endfor %}
+                          
+                          
+                    </tr>               
+                    </tbody>
+                    </table>
+
+                     <a style="float:right;" href="{{ path('clientes_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+            </div>
+        </div>
+    </table>
+
+</main>
+{% endblock %}

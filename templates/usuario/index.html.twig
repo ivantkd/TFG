@@ -1,0 +1,71 @@
+{% extends 'nav.html.twig' %}
+
+{% block title %}Usuario index{% endblock %}
+
+{% block content %}
+<body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+<br>
+
+    <h1>Lista de usuarios</h1>
+
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mail</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+             {% if is_granted('ROLE_ADMIN') %}
+
+                <th>Opciones de administrador</th>
+
+            {% endif %}  
+            </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.mail }}</td>
+                <td>{{ usuario.Nombre }}</td>
+                <td>{{ usuario.Apellidos }}</td>
+                
+                 
+                     {% if is_granted('ROLE_ADMIN') %}
+                <td>
+
+                    {% if app.user.username != usuario.mail %}    
+                        <form method="post" style="float:left; margin-left:2%;" action="{{ path('usuario_delete', {'mail': usuario.mail}) }}" onsubmit="return confirm('Estás seguro que desea eliminar el usuario?');">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="image" src="../../../img/basurita.png" width="30px" height="30px"/>
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ usuario.mail) }}">
+                        </form>
+
+                   
+                        <a style="float:left; margin-left:2%;" href="{{ path('usuario_edit', {'mail': usuario.mail}) }}"><img src="../../../img/edit.png"  width="30px" height="30px"></a>
+
+                      {% else %}
+
+                       No puedes eliminar el usuario en el que estas logueado
+                     {% endif %} 
+                </td>
+                
+                {% endif %}  
+                    
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No existen usuarios en la base de datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a style="float:left;" href="{{ path('usuario_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
+
+
+</main>
+</body>
+{% endblock %}

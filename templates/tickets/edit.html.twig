@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tickets{% endblock %}
+
+{% block body %}
+    <h1>Edit Tickets</h1>
+
+    {{ include('tickets/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <br>
+
+    <button class="btn"><a href="{{ path('tickets_index') }}">Volver a la lista</a></button>
+
+    <br>
+
+    {{ include('tickets/_delete_form.html.twig') }}
+{% endblock %}
