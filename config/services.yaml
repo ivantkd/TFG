@@ -6,6 +6,8 @@
 parameters:
     locale: 'en'
     directorio_imagenes: '%kernel.project_dir%/public/imagenesperfil'
+    env(MERCURE_PUBLISH_URL): 'http://localhost/.well-known/mercure'
+    env(MERCURE_JWT_SECRET): 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
 services:
     # default configuration for services in *this* file
