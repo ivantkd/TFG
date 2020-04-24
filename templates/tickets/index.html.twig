@@ -17,7 +17,8 @@
                     <th>Dispositivo</th>
                     <th>Resuelto</th>
                     <th>Accion</th>
-                </tr>
+                    <th>Tiempo Resolución</th>
+                </tr> 
             </thead>
             <tbody>
             {% if is_granted('ROLE_ADMIN') %}
@@ -39,8 +40,12 @@
                         {% if ticket.solved == "no" and is_granted('ROLE_ADMIN') %}
                         <button class="btn"><a href="{{ path('tickets_resolve', {'id': ticket.id}) }}">Resolver</a></button>
                         {% endif %}
+                        {% if ticket.Solved == "si" %}
+                        <button class="btn"><a href="{{ path('reopen', {'id': ticket.id}) }}">Reabrir</a></button>
+                        {% endif %}
                         
                     </td>
+                    <td>0</td>
                 </tr>
             {% else %}
                 <tr>

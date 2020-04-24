@@ -147,8 +147,24 @@ class TicketsController extends AbstractController
             'tickets' => $ticketsRepository->findby(['usermail' => $usr]),
         ]);
     }
-
+     /**
+     * Reabre un ticket abierto por un usuario
+     * @Route("/{id}/reopen", name="reopen", methods={"GET","POST"})
+     * @param request Inyeccion de dependencias de la clase Request de symfony
+     * @param ticket Inyeccion de dependencias de la clase Entity/Tickets
+     */
+    public function reopen(Request $request, Tickets $ticket): Response
+    {       
+            
+        $em = $this->getDoctrine()->getManager();
+        $singleticket = $em->getRepository(Tickets::class)->find($ticket);
     
+        $singleticket->setSolved('no');
+        $em->flush();
+    
+        return $this->redirectToRoute('tickets_index');
+    }
+   
     /**
      * Resuelve los tickets abiertos por los usuarios
      * @Route("/{id}/resolve", name="tickets_resolve", methods={"GET","POST"})
