@@ -9,7 +9,7 @@
 
     <h1>Directorio de personas</h1>
 
-    <table class="table">
+    <table class="table" id="table-sorter">
         <thead>
             <tr>
                 <th>Numero_Empleado</th>
@@ -45,5 +45,15 @@
     <a href="{{ path('persona_new') }}"><img  width="30px" height="30px" src="../../../../img/mas.png"></a>
 
 </main>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    //$('#table-sorter tr:first').remove();    
+    var myTable= $('#table-sorter').DataTable({
+        "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        "language": {"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"} 
+    });
+});
+    </script>
 </body>
 {% endblock %}

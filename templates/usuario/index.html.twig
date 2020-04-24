@@ -12,7 +12,7 @@
 
     <br>
 
-    <table class="table">
+    <table class="table" id="table-sorter2">
         <thead>
             <tr>
                 <th>Mail</th>
@@ -67,5 +67,15 @@
 
 
 </main>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    //$('#table-sorter tr:first').remove();    
+    var myTable= $('#table-sorter2').DataTable({
+        "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        "language": {"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"} 
+    });
+});
+    </script>
 </body>
 {% endblock %}
