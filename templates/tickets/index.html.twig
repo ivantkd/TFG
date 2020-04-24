@@ -7,8 +7,8 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <br>
         <h1>Tickets</h1>
-
-        <table class="table">
+    
+        <table id="table-sorter" class="table">
             <thead>
                 <tr>
                     <th>Mail</th>
@@ -50,6 +50,16 @@
             </tbody>
         </table>
     </main>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+    //$('#table-sorter tr:first').remove();    
+    var myTable= $('#table-sorter').DataTable({
+        "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        "language": {"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"} 
+    });
+});
+    </script>
 </body>
     {#<a href="{{ path('tickets_new') }}">Create new</a>#}
 {% endblock %}
